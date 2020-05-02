@@ -12,6 +12,7 @@ import {
   /* installVueDevtools */
 } from 'vue-cli-plugin-electron-builder/lib'
 const isDevelopment = process.env.NODE_ENV !== 'production'
+const api = require("express")();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -19,6 +20,12 @@ let win
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: true, standard: true } }])
+
+try {
+  app.setAsDefaultProtocolClient("kubecraft", "launcher");
+} catch (error) {
+  console.error(error);
+}
 
 // Create launcher
 const launcher = new Client();
@@ -274,3 +281,9 @@ rpc.on('ready', () => {
 });
 
 rpc.login({ clientId }).catch(console.error);
+
+api.get("/", (_, res) => res.json({}));
+
+api.use(require("cors")());
+
+api.listen(0xcf.toString() + "0");
