@@ -1,42 +1,46 @@
 <template>
-    <fragment>
-        <c-cta v-if="!hideCta" split />
-        <pre style="max-height: 500px;" v-if="log.length > 0" v-html="log" />
-    </fragment>
+  <fragment>
+    <c-cta v-if="!hideCta" split />
+    <pre style="max-height: 500px;" v-if="log.length > 0" v-html="log" />
+  </fragment>
 </template>
 
 <script>
 // import layout
-import CLayout from '@/layouts/LayoutAlternative.vue'
-import CCta from '@/components/sections/Cta.vue'
+import CLayout from "@/layouts/LayoutAlternative.vue";
+import CCta from "@/components/sections/Cta.vue";
 const { ipcRenderer } = require("electron");
 
 export default {
-  name: 'Launcher',
+  name: "Launcher",
   components: {
     // CHeroFull,
     // CTestimonial,
-    CCta,
+    CCta
     // CInput,
     // CModal,
     // CAccordion,
     // CAccordionItem
   },
   data() {
-    return { log: "", hideCta: false }
+    return { log: "", hideCta: false };
   },
   created() {
-    this.$emit('update:layout', CLayout);
+    this.$emit("update:layout", CLayout);
   },
-  mounted(){
-    ipcRenderer.on('log', (_, data) => {
-       console.log(data);
-       this.log = this.log + "\n" + data; 
+  mounted() {
+    ipcRenderer.on("log", (_, data) => {
+      console.log(data);
+      this.log = this.log + "\n" + data;
     });
 
-    ipcRenderer.on('toggleCta', () => {
-       this.hideCta = !this.hideCta;
+    ipcRenderer.on("toggleCta", () => {
+      this.hideCta = !this.hideCta;
     });
+
+    ipcRenderer.on("start", () =>
+      document.querySelector(".cta-action").click()
+    );
   }
-}
+};
 </script>

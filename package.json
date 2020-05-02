@@ -1,6 +1,6 @@
 {
   "name": "@kubecraft/launcher",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "displayName": "Kubecraft Launcher",
   "private": true,
   "scripts": {
@@ -20,6 +20,7 @@
   },
   "main": "background.js",
   "dependencies": {
+    "@sentry/electron": "1.3.0",
     "core-js": "^3.6.4",
     "minecraft-launcher-core": "^3.13.3",
     "vue": "^2.6.11",

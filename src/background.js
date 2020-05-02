@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, ipcMain } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, Menu, shell } from 'electron'
 const { Client, Authenticator } = require('minecraft-launcher-core')
 import { homedir } from "os";
 import { join } from "path";
@@ -25,7 +25,10 @@ function createWindow() {
   win = new BrowserWindow({
     width: 800, height: 600, webPreferences: {
       nodeIntegration: true,
-      title: "Kubecraft"
+      title: "Kubecraft",
+      frame: false,
+      titleBarStyle: 'hiddenInset',
+      transparent: true
     }
   })
 
@@ -97,7 +100,63 @@ if (isDevelopment) {
   }
 }
 
-ipcMain.on('launcher', (_, nickname) => {
+// Menu
+const menuTemplate = [
+  {
+    role: "file",
+    label: 'Game',
+    submenu: [
+      {
+        label: 'I\'ve found a bug 🐞',
+        click: async () => {
+          await shell.openExternal('https://github.com/kubecraftserver/launcher/issues')
+        }
+      },
+      {
+        label: 'Start',
+        accelerator: 'CmdOrCtrl+S',
+        click: async () => {
+          win.webContents.send('start');
+        }
+      },
+      {
+        label: 'Open Developer Tools',
+        accelerator: 'CmdOrCtrl+D',
+        click: async () => {
+          win.webContents.openDevTools();
+        }
+      },
+    ]
+  },
+  {
+    role: "help",
+    label: 'Help',
+    submenu: [
+      {
+        label: 'Wiki',
+        click: async () => {
+          await shell.openExternal('https://github.com/kubecraftserver/launcher/wiki')
+        }
+      },
+      {
+        label: 'GitHub',
+        click: async () => {
+          await shell.openExternal('https://github.com/kubecraftserver/launcher')
+        }
+      },
+      {
+        label: 'Website',
+        click: async () => {
+          await shell.openExternal('https://kubecraft.0x77.page')
+        }
+      }
+    ]
+  },
+];
+const menu = Menu.buildFromTemplate(menuTemplate)
+Menu.setApplicationMenu(menu)
+
+let start = (nickname) => {
   let opts = {
     authorization: Authenticator.getAuth(nickname),
     root: join(homedir(), '.kubecraft'),
@@ -139,4 +198,6 @@ ipcMain.on('launcher', (_, nickname) => {
       console.error(error);
     }
   });
-});
+}
+
+ipcMain.on('launcher', (_, nickname) => start(nickname));
