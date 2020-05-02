@@ -20,12 +20,16 @@
       >
         <div class="cta-slogan">
           <h3 class="m-0">
-            <c-input v-model="nickname" label="Nickname" />
+            <c-input
+              v-model="nickname"
+              :hint="downloadingRoot ? 'Downloading Forge and Mods.' : ''"
+              label="Nickname"
+            />
             <br />
           </h3>
         </div>
         <div @click="start(nickname)" class="cta-action">
-          <c-button id="start" hint="CmdOrCtrl+S to Start">Lets Go! 👾</c-button>
+          <c-button :loading="loading" id="start" hint="CmdOrCtrl+S to Start">Lets Go! 👾</c-button>
         </div>
       </div>
     </div>
@@ -46,13 +50,22 @@ export default {
   },
   data() {
     return {
-      nickname: localStorage.nickname ? localStorage.nickname : ""
+      nickname: localStorage.nickname ? localStorage.nickname : "",
+      loading: false,
+      downloadingRoot: false
     };
   },
   mounted() {},
   methods: {
     start(nickname) {
-      ipcRenderer.send("launcher", nickname);
+      this.loading = true;
+      this.downloadingRoot = true;
+      ipcRenderer.on("ready-to-start", () => {
+        this.loading = false;
+        this.downloadingRoot = false;
+        ipcRenderer.send("launcher", nickname);
+      });
+      ipcRenderer.send("prepare-to-start");
     }
   },
   watch: {

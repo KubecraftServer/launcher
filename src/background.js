@@ -1,10 +1,11 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, ipcMain, Menu, shell } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, Menu, shell, Notification } from 'electron'
 import { Client, Authenticator } from 'minecraft-launcher-core';
 import { autoUpdater } from "electron-updater"
-import { homedir } from "os";
+import { homedir, totalmem } from "os";
 import { join } from "path";
+import clone from "./clone";
 import {
   createProtocol,
   /* installVueDevtools */
@@ -166,17 +167,24 @@ let start = (nickname) => {
   let opts = {
     authorization: Authenticator.getAuth(nickname),
     root: join(homedir(), '.kubecraft'),
+    forge: join(homedir(), '.kubecraft', "forge-universal.jar"),
     version: {
       number: "1.12.2",
       type: "release"
     },
     memory: {
-      max: "6000",
-      min: "4000"
+      max: totalmem() / 1024 / 1024 / 2,
+      min: totalmem() / 1024 / 1024 / 2 / 2
     }
   }
 
   try {
+    new Notification('Kubecraft', {
+      title: `Cannot download mods and forge`,
+      subtitle: "Kubecraft",
+      body: 'Starting minecraft...',
+      silent: true
+    }).show();
     launcher.launch(opts);
     win.hide();
     win.setMenu(null);
@@ -205,5 +213,28 @@ let start = (nickname) => {
     }
   });
 }
+
+ipcMain.on('prepare-to-start', async (event) => {
+  new Notification('Kubecraft', {
+    title: `Cannot download mods and forge`,
+    subtitle: "Kubecraft",
+    body: 'Downloading forge, and mods...',
+    silent: true
+  }).show();
+  const root = join(homedir(), '.kubecraft');
+  try {
+    await clone("KubecraftServer/mcroot", root);
+  } catch (error) {
+    new Notification('Kubecraft', {
+      title: `Cannot download mods and forge`,
+      subtitle: "Kubecraft",
+      body: `Cannot download mods and forge`,
+      silent: true
+    }).show();
+    console.error(error);
+    event.reply('notready-to-start', error)
+  }
+  event.reply('ready-to-start')
+})
 
 ipcMain.on('launcher', (_, nickname) => start(nickname));
