@@ -1,0 +1,29 @@
+name: Build/release/macOS
+
+on: push
+
+jobs:
+  release:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          node-version: 10
+      - run: yarn install
+      - run: yarn run electron:generate-icons
+      - run: yarn run publish --mac dmg
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: dist_electron
+          path: dist_electron
