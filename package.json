@@ -1,6 +1,6 @@
 {
   "name": "@kubecraft/launcher",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "displayName": "Kubecraft Launcher",
   "private": true,
   "author": "Mikhail Marynenko <0x77dev@protonmail.com>",
