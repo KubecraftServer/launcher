@@ -13,6 +13,10 @@
     "postuninstall": "electron-builder install-app-deps",
     "electron:generate-icons": "electron-icon-builder --input=./src/assets/logo.png --output=build --flatten"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kubecraftserver/launcher.git"
+  },
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.6.4",
