@@ -19,6 +19,8 @@ jobs:
       - run: yarn install
       - run: yarn run electron:generate-icons
       - run: yarn run publish --mac dmg
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - run: yarn run publish --mac zip
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
