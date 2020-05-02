@@ -1,15 +1,17 @@
 <template>
   <component style="padding-top: 15px;" :is="layout">
-    <router-view :layout.sync="layout" />
+    <Launcher :layout.sync="layout" />
   </component>
 </template>
 
 <script>
-import { ScrollReveal } from "@/utils/ScrollReveal.js";
+import Launcher from "@/views/Launcher.vue";
 
 export default {
   name: "App",
-  mixins: [ScrollReveal],
+  components: {
+    Launcher
+  },
   data() {
     return {
       layout: "div"

@@ -1,7 +1,8 @@
 'use strict'
 
 import { app, protocol, BrowserWindow, ipcMain, Menu, shell } from 'electron'
-const { Client, Authenticator } = require('minecraft-launcher-core')
+import { Client, Authenticator } from 'minecraft-launcher-core';
+import { autoUpdater } from "electron-updater"
 import { homedir } from "os";
 import { join } from "path";
 import {
@@ -43,6 +44,7 @@ function createWindow() {
     createProtocol('app')
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
+    autoUpdater.checkForUpdatesAndNotify()
   }
 
   win.on('closed', () => {

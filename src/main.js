@@ -7,13 +7,13 @@ Vue.use(Fragment.Plugin);
 // Vue.use(Vue2TouchEvents);
 
 import App from './App.vue';
-import router from './router';
+// import router from './router';
 
 import '@/assets/scss/style.scss';
 
 Vue.config.productionTip = false;
 
 new Vue({
-  router,
+  // router,
   render: h => h(App)
 }).$mount('#app');

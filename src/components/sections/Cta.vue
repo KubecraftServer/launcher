@@ -36,7 +36,7 @@
 import { SectionProps } from "@/utils/SectionProps.js";
 import CButton from "@/components/elements/Button.vue";
 import CInput from "@/components/elements/Input.vue";
-const { ipcRenderer } = require("electron");
+import { ipcRenderer } from "electron";
 
 export default {
   name: "CCta",

@@ -9,7 +9,7 @@
 // import layout
 import CLayout from "@/layouts/LayoutAlternative.vue";
 import CCta from "@/components/sections/Cta.vue";
-const { ipcRenderer } = require("electron");
+import { ipcRenderer } from "electron";
 
 export default {
   name: "Launcher",
