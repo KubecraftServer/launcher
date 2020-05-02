@@ -3,7 +3,16 @@ module.exports = {
   pluginOptions: {
     electronBuilder: {
       builderOptions: {
-        // options placed here will be merged with default configuration and passed to electron-builder
+        publish: ['github'],
+        appId: "page.-x77.kubecraft.launcher",
+        productName: "Kubecraft Launcher",
+        copyright: "Mikhail Marynenko & Kubecraft Team",
+        mac: {
+          target: "dmg"
+        },
+        appImage: {
+          artifactName: "app.bin"
+        }
       }
     }
   }
