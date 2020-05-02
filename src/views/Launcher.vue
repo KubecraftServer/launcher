@@ -1,7 +1,7 @@
 <template>
   <fragment>
     <c-cta v-if="!hideCta" split />
-    <pre style="max-height: 500px;" v-if="log.length > 0" v-html="log" />
+    <pre style="max-height: 150px; overflow-x: hidden;" v-if="log.length > 0" v-html="log" />
   </fragment>
 </template>
 

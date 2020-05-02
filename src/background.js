@@ -23,12 +23,15 @@ const launcher = new Client();
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800, height: 600, webPreferences: {
+    width: 800,
+    height: 550,
+    title: "Kubecraft",
+    frame: false,
+    titleBarStyle: 'hiddenInset',
+    transparent: true,
+    webPreferences: {
       nodeIntegration: true,
-      title: "Kubecraft",
-      frame: false,
-      titleBarStyle: 'hiddenInset',
-      transparent: true
+      webSecurity: false,
     }
   })
 
@@ -106,6 +109,7 @@ const menuTemplate = [
     role: "file",
     label: 'Game',
     submenu: [
+      { role: 'quit' },
       {
         label: 'I\'ve found a bug 🐞',
         click: async () => {

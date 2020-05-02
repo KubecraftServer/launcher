@@ -3,6 +3,8 @@
 	top: 0;
 	width: 100%;
 	z-index: 10 !important;
+	padding-top: 30px;
+	-webkit-app-region: drag;
 	background: color-bg(header);
 
 	+ .site-content {

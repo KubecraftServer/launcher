@@ -1,5 +1,5 @@
 <template>
-  <component :is="layout">
+  <component style="padding-top: 15px;" :is="layout">
     <router-view :layout.sync="layout" />
   </component>
 </template>
