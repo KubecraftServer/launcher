@@ -177,7 +177,7 @@ let start = (nickname) => {
       host: "mc.kubecraft.0x77.page"
     },
     memory: {
-      max: totalmem() / 1024 / 1024 / 2,
+      max: (totalmem() / 1024 / 1024 / 2) > 5094 ? 5094 : (totalmem() / 1024 / 1024 / 2),
       min: totalmem() / 1024 / 1024 / 2 / 2
     }
   }
