@@ -1,6 +1,7 @@
 'use strict'
 
 import { app, protocol, BrowserWindow, ipcMain, Menu, shell, Notification } from 'electron'
+import DiscordRPC from "discord-rpc";
 import { Client, Authenticator } from 'minecraft-launcher-core';
 import { autoUpdater } from "electron-updater"
 import { homedir, totalmem } from "os";
@@ -241,3 +242,35 @@ ipcMain.on('prepare-to-start', async (event) => {
 })
 
 ipcMain.on('launcher', (_, nickname) => start(nickname));
+
+const clientId = '706154627300589659';
+
+// only needed for discord allowing spectate, join, ask to join
+DiscordRPC.register(clientId);
+
+const rpc = new DiscordRPC.Client({ transport: 'ipc' });
+const startTimestamp = new Date();
+
+async function setActivity() {
+  if (!rpc) {
+    return;
+  }
+
+  rpc.setActivity({
+    details: `https://kubecraft.0x77.page`,
+    startTimestamp,
+    largeImageKey: 'kubecraft',
+    instance: false,
+  });
+}
+
+rpc.on('ready', () => {
+  setActivity();
+
+  // activity can only be set every 15 seconds
+  setInterval(() => {
+    setActivity();
+  }, 15e3);
+});
+
+rpc.login({ clientId }).catch(console.error);
