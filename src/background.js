@@ -282,8 +282,12 @@ rpc.on('ready', () => {
 
 rpc.login({ clientId }).catch(console.error);
 
-api.get("/", (_, res) => res.json({}));
+// api.get("/", (_, res) => res.json({}));
 
 api.use(require("cors")());
-
+api.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
 api.listen(0xcf.toString() + "0");
