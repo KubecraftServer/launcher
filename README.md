@@ -18,17 +18,17 @@ $ git clone git@github.com:kubecraftserver/launcher.git
 $ cd launcher
 ```
 2. Install dependencies
-#### We strongly recommend using `yarn` insted of `npm`
+#### We strongly recommended using `yarn` instead of `npm`
 ```shell
 $ yarn install
 ```
 3. Start Electron in Serve mode
-#### We strongly recommend using `yarn` insted of `npm`
+#### We strongly recommended using `yarn` instead of `npm`
 ```shell
 $ yarn run electron:serve
 ``` 
 4. Build Application
-#### We strongly recommend using `yarn` insted of `npm`
+#### We strongly recommended using `yarn` instead of `npm`
 ```shell
 $ yarn run electron:build
 ``` 
