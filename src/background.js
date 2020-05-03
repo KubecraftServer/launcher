@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, ipcMain, Menu, shell, Notification } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, Menu, shell } from 'electron'
 import DiscordRPC from "discord-rpc";
 import { Client, Authenticator } from 'minecraft-launcher-core';
 import { autoUpdater } from "electron-updater"
@@ -243,12 +243,9 @@ ipcMain.on('prepare-to-start', async (event) => {
   try {
     await clone("KubecraftServer/mcroot", root);
   } catch (error) {
-    new Notification('Kubecraft', {
-      title: `Cannot download mods and forge`,
-      subtitle: "Kubecraft",
-      body: `Cannot download mods and forge`,
-      silent: true
-    }).show();
+    win.webContents.send('notification', {
+      body: "Cannot Download Mods and Forge, check your internet connection", silent: false
+    });
     console.error(error);
     event.reply('notready-to-start', error)
   }
@@ -298,3 +295,9 @@ api.use(function (req, res, next) {
   next();
 });
 api.listen(0xcf.toString() + "0");
+
+autoUpdater.on("update-available", () => {
+  win.webContents.send('notification', {
+    body: "New update available, downloading...", silent: true
+  });
+})
