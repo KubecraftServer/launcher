@@ -8,7 +8,7 @@ module.exports = {
         productName: "Kubecraft Launcher",
         copyright: "Mikhail Marynenko & Kubecraft Team",
         mac: {
-          target: "dmg",
+          target: ["dmg", "zip"],
           hardenedRuntime: true,
           entitlements: "./node_modules/electron-builder-notarize/entitlements.mac.inherit.plist",
         },
