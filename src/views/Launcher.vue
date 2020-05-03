@@ -34,6 +34,14 @@ export default {
       this.log = this.log + "\n" + data;
     });
 
+    ipcRenderer.on("notification", (_, { subtitle, body, silent = true }) => {
+      new Notification("Kubecraft", {
+        subtitle,
+        body,
+        silent
+      });
+    });
+
     ipcRenderer.on("toggleCta", () => {
       this.hideCta = !this.hideCta;
     });

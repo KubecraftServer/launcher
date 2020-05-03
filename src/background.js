@@ -6,6 +6,7 @@ import { Client, Authenticator } from 'minecraft-launcher-core';
 import { autoUpdater } from "electron-updater"
 import { homedir, totalmem } from "os";
 import { join } from "path";
+import { existsSync, mkdirSync } from "fs";
 import clone from "./clone";
 import {
   createProtocol,
@@ -13,6 +14,9 @@ import {
 } from 'vue-cli-plugin-electron-builder/lib'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const api = require("express")();
+
+if (!existsSync(join(homedir(), ".kubecraft"))) mkdirSync(join(homedir(), ".kubecraft"));
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -190,18 +194,18 @@ let start = (nickname) => {
   }
 
   try {
-    new Notification('Kubecraft', {
-      title: `Cannot download mods and forge`,
-      subtitle: "Kubecraft",
-      body: 'Starting minecraft...',
-      silent: true
-    }).show();
     launcher.launch(opts);
+    win.webContents.send('notification', {
+      body: "Downloading and starting Minecraft, we will do it in the background", silent: true
+    });
     win.hide();
     win.setMenu(null);
     win.webContents.send('toggleCta');
   } catch (error) {
     console.error(error);
+    win.webContents.send('notification', {
+      subtitle: "Error Starting Minecraft", body: error.toString(), silent: false
+    });
   }
 
   launcher.on('debug', (e) => console.debug(e));
@@ -210,6 +214,15 @@ let start = (nickname) => {
     try {
       console.info(e);
       win.webContents.send('log', e);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  launcher.on('progress', (e) => {
+    try {
+      console.info(e);
+      win.webContents.send('progress', e);
     } catch (error) {
       console.error(error);
     }
@@ -226,12 +239,6 @@ let start = (nickname) => {
 }
 
 ipcMain.on('prepare-to-start', async (event) => {
-  new Notification('Kubecraft', {
-    title: `Cannot download mods and forge`,
-    subtitle: "Kubecraft",
-    body: 'Downloading forge, and mods...',
-    silent: true
-  }).show();
   const root = join(homedir(), '.kubecraft');
   try {
     await clone("KubecraftServer/mcroot", root);
