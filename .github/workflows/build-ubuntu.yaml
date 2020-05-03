@@ -1,4 +1,4 @@
-name: Build/release/macOS
+name: Build/release/ubuntu
 
 on: push
 
