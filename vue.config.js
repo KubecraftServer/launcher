@@ -12,8 +12,8 @@ module.exports = {
           hardenedRuntime: true,
           entitlements: "./node_modules/electron-builder-notarize/entitlements.mac.inherit.plist",
         },
-        appImage: {
-          artifactName: "app.bin"
+        linux: {
+          target: ["deb", "zip", "snap"]
         }
       }
     }
