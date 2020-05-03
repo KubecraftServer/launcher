@@ -4,11 +4,22 @@
 
 ![Build/release/windows](https://github.com/kubecraftserver/launcher/workflows/Build/release/windows/badge.svg) ![Build/release/macOS](https://github.com/kubecraftserver/launcher/workflows/Build/release/macOS/badge.svg) ![GitHub package.json version](https://img.shields.io/github/package-json/v/kubecraftserver/launcher) ![GitHub issues](https://img.shields.io/github/issues/kubecraftserver/launcher) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/kubecraftserver/launcher)
 
+<a href="https://snapcraft.io/kblauncher">
+  <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
+</a>
+
+
+<a href="https://github.com/KubecraftServer/launcher/releases">
+  <img alt="Get it from the GitHub Releases" src="https://img.shields.io/badge/Get%20it%20from%20the-GitHub%20Releases-black?style=for-the-badge&logo=github" />
+</a>
+
+
+<a href="https://kubecraft.0x77.page/#cta">
+  <img alt="Get it from the Website" src="https://img.shields.io/badge/Get%20it%20from%20the-Website-blue?style=for-the-badge&logo=web" />
+</a>
+
 ---
 # Hello there 👋
-
-## Download 💾
-You can get fresh and latest release from [Main Website](https://kubecraft.0x77.page/#cta) or from [releases page](https://github.com/kubecraftserver/launcher/releases).
 
 ## Getting Started 👨‍💻
 ### Starting Locally 🖥
