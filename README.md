@@ -2,7 +2,10 @@
 
 <p align="center"> <img src="https://avatars2.githubusercontent.com/u/64664482?s=200&v=4" alt="Kubecraft Logo" width="20px" height="20px" /> Kubecraft Launcher</p>
 
-![Build/release/windows](https://github.com/kubecraftserver/launcher/workflows/Build/release/windows/badge.svg) ![Build/release/macOS](https://github.com/kubecraftserver/launcher/workflows/Build/release/macOS/badge.svg) ![GitHub package.json version](https://img.shields.io/github/package-json/v/kubecraftserver/launcher) ![GitHub issues](https://img.shields.io/github/issues/kubecraftserver/launcher) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/kubecraftserver/launcher)
+![Build/release/windows](https://github.com/kubecraftserver/launcher/workflows/Build/release/windows/badge.svg) ![Build/release/macOS](https://github.com/kubecraftserver/launcher/workflows/Build/release/macOS/badge.svg)
+![Build/release/ubuntu](https://github.com/KubecraftServer/launcher/workflows/Build/release/ubuntu/badge.svg)
+
+![GitHub package.json version](https://img.shields.io/github/package-json/v/kubecraftserver/launcher) ![GitHub issues](https://img.shields.io/github/issues/kubecraftserver/launcher) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/kubecraftserver/launcher)
 
 <a href="https://snapcraft.io/kblauncher">
   <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
