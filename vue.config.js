@@ -13,7 +13,6 @@ module.exports = {
           entitlements: "./node_modules/electron-builder-notarize/entitlements.mac.inherit.plist",
         },
         linux: {
-          publish: ['snap'],
           target: ["deb", "zip", "snap"]
         }
       }
