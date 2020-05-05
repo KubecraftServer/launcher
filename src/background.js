@@ -200,6 +200,7 @@ let start = (nickname) => {
     });
     win.hide();
     win.setMenu(null);
+    win.webContents.send('playStart');
     win.webContents.send('toggleCta');
   } catch (error) {
     console.error(error);
@@ -232,6 +233,7 @@ let start = (nickname) => {
     try {
       win.show();
       win.webContents.send('toggleCta');
+      win.webContents.send('playStop');
     } catch (error) {
       console.error(error);
     }

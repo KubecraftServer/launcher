@@ -42,6 +42,19 @@ export default {
       });
     });
 
+    const playStart = () =>
+      new Audio(
+        "https://gamepedia.cursecdn.com/minecraft_gamepedia/8/8c/Beacon_activate.ogg"
+      ).play();
+
+    const playStop = () =>
+      new Audio(
+        "https://gamepedia.cursecdn.com/minecraft_gamepedia/8/88/Beacon_deactivate.ogg"
+      ).play();
+
+    ipcRenderer.on("playStart", () => playStart());
+    ipcRenderer.on("playStop", () => playStop());
+
     ipcRenderer.on("toggleCta", () => {
       this.hideCta = !this.hideCta;
     });
