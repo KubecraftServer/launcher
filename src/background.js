@@ -254,6 +254,11 @@ ipcMain.on('prepare-to-start', async (event) => {
   event.reply('ready-to-start')
 })
 
+ipcMain.on('set-password', async (_, password) => {
+  console.info(password);
+  process.env.KUBECRAFT_PASSWORD = password;
+});
+
 ipcMain.on('launcher', (_, nickname) => start(nickname));
 
 const clientId = '706154627300589659';

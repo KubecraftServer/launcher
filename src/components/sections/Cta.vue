@@ -26,6 +26,8 @@
               label="Nickname"
             />
             <br />
+            <c-input v-model="password" type="password" label="Password" />
+            <br />
           </h3>
         </div>
         <div @click="start(nickname)" class="cta-action">
@@ -51,13 +53,19 @@ export default {
   data() {
     return {
       nickname: localStorage.nickname ? localStorage.nickname : "",
+      password: localStorage.password ? localStorage.password : "",
       loading: false,
       downloadingRoot: false
     };
   },
-  mounted() {},
+  mounted() {
+    if (this.password.length > 0)
+      ipcRenderer.send("set-password", this.password);
+  },
   methods: {
     start(nickname) {
+      if (this.password.length > 0)
+        ipcRenderer.send("set-password", this.password);
       this.loading = true;
       this.downloadingRoot = true;
       ipcRenderer.on("ready-to-start", () => {
@@ -71,6 +79,9 @@ export default {
   watch: {
     nickname(nickname) {
       localStorage.nickname = nickname;
+    },
+    password(password) {
+      localStorage.password = password;
     }
   },
   mixins: [SectionProps],
