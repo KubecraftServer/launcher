@@ -7450,10 +7450,10 @@ min-document@^2.19.0:
   dependencies:
     dom-walk "^0.1.0"
 
-minecraft-launcher-core@^3.13.3:
-  version "3.13.3"
-  resolved "https://registry.yarnpkg.com/minecraft-launcher-core/-/minecraft-launcher-core-3.13.3.tgz#42a13aa64e0a6b8e28d35c05e2a6ead7da9d22d9"
-  integrity sha512-omRxddftYJc7TPgqUPmavYszwv5vVY8XYZlQvs29bcQ8ufV6Nd6i9Acq0CFEHk4a9lA2pFmvtnnyz2MJkbUSUg==
+minecraft-launcher-core@^3.14.1:
+  version "3.14.1"
+  resolved "https://registry.yarnpkg.com/minecraft-launcher-core/-/minecraft-launcher-core-3.14.1.tgz#6dd9c29214ece5c717ddabc20c1225a4788f9a51"
+  integrity sha512-3WcSIlf8tUojnmx0eb/kbkOta6XkAO5PwSvz57VY56H6lwFnB+VILoke75rIwBXdy7M2RQrEjKOAyXIZwUUjaA==
   dependencies:
     adm-zip "^0.4.13"
     checksum "^0.1.1"
