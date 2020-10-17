@@ -34,7 +34,7 @@
     "minecraft-launcher-core": "^3.14.4",
     "vue": "^2.6.11",
     "vue-fragment": "^1.5.1",
-    "vue-router": "^3.1.6",
+    "vue-router": "^3.4.7",
     "vue2-touch-events": "^2.2.1"
   },
   "devDependencies": {
