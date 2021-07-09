@@ -45,7 +45,7 @@
     "babel-eslint": "^10.1.0",
     "electron": "^7.2.4",
     "electron-builder-notarize": "^1.1.2",
-    "electron-icon-builder": "^1.0.2",
+    "electron-icon-builder": "^2.0.1",
     "electron-notarize": "^1.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
