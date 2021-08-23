@@ -31,7 +31,7 @@
     "electron-builder": "^22.6.0",
     "electron-updater": "^4.3.1",
     "express": "^4.17.1",
-    "minecraft-launcher-core": "^3.14.4",
+    "minecraft-launcher-core": "^3.16.7",
     "vue": "^2.6.11",
     "vue-fragment": "^1.5.1",
     "vue-router": "^3.1.6",
